@@ -32,3 +32,21 @@ def test_save_and_load_post(monkeypatch):
         assert "2025-07-10" in loaded
         assert loaded["2025-07-10"]["prompt"]["theme"] == "記憶"
         assert loaded["2025-07-10"]["content"].startswith("彼は記憶を")
+
+def test_load_posts_with_empty_file(monkeypatch):
+    with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
+        tmp_path = Path(tmp.name)
+        tmp.write("")  # 空ファイル
+
+    monkeypatch.setattr(storage, "DATA_PATH", tmp_path)
+    posts = storage.load_posts()
+    assert posts == {}
+
+def test_load_posts_with_invalid_json(monkeypatch):
+    with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
+        tmp_path = Path(tmp.name)
+        tmp.write("{ invalid json }")  # 壊れたJSON
+
+    monkeypatch.setattr(storage, "DATA_PATH", tmp_path)
+    posts = storage.load_posts()
+    assert posts == {}
