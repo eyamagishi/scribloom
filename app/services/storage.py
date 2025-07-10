@@ -3,7 +3,6 @@
 import json
 from pathlib import Path
 from app.models.schemas import Post
-from datetime import date
 
 DATA_PATH = Path("data/posts.json")
 
