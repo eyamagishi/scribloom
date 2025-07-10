@@ -9,9 +9,25 @@ license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "streamlit (>=1.46.1,<2.0.0)",
+    "pydantic (>=2.11.7,<3.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "scribloom"
+version = "0.1.0"
+description = "A daily prompt-based writing tool."
+authors = ["Etsuro <your@email>"]
+license = "MIT"
+packages = [{ include = "app" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+black = "^25.1.0"
+ruff = "^0.12.2"
+
