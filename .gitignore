@@ -1,0 +1,20 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+*.sqlite3
+
+# Poetry
+poetry.lock
+
+# VSCode
+.vscode/
+
+# Streamlit
+.streamlit/
+
+# Data
+data/posts.json
