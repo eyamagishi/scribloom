@@ -18,3 +18,10 @@ poetry.lock
 
 # Data
 data/posts.json
+
+# coverage
+.coverage
+htmlcov/
+
+# pytest
+.pytest_cache/
