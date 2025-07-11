@@ -1,7 +1,7 @@
 [project]
 name = "scribloom"
 version = "0.1.0"
-description = "A daily prompt-based writing tool."
+description = "毎日のお題で創作を習慣にする、シンプルな創作支援アプリ"
 authors = [
     {name = "eyamagishi",email = "e.yamagishi0625@gmail.com"}
 ]
@@ -30,4 +30,3 @@ pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
 black = "^25.1.0"
 ruff = "^0.12.2"
-

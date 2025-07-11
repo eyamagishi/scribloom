@@ -1,0 +1,19 @@
+# ============================================================
+# Streamlit Server Configuration for Production Deployment
+# ============================================================
+
+[server]
+# ヘッドレスモードで起動（UIなし／CLI起動向け）
+headless = true
+
+# 起動時のポート番号（デフォルト: 8501）
+port = 8501
+
+# CORS設定（false で任意のドメインからのアクセスを許可）
+enableCORS = false
+
+# ファイル変更を即座に反映（デバッグ用途で true、公開時は false 推奨）
+# fileWatcherType = "auto"
+
+# デフォルトで起動時にブラウザを開くか（false = 開かない）
+# browser.gatherUsageStats = false
