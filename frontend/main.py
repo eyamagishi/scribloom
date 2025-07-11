@@ -1,5 +1,17 @@
 # frontend/main.py
 
+"""
+Scribloom の Streamlit フロントエンド。
+
+このアプリは、日替わりのお題に基づいて文章を執筆・保存し、
+履歴を閲覧できる創作支援ツールです。
+
+主な機能:
+- お題の表示（テーマ・ジャンル・舞台）
+- Markdown対応の執筆エリアと文字数カウント
+- 投稿の保存と履歴表示
+"""
+
 import streamlit as st
 from datetime import date
 from app.core.prompt import generate_daily_prompt
