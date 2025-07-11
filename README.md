@@ -71,14 +71,16 @@ poetry run pytest --cov=app tests/
 
 ---
 
-## 📘 詳細ドキュメント（`docs/` ディレクトリ）
+## 📘 詳細ドキュメント
 
-Scribloom の設計・構造・処理フローの詳細はこちら：
+Scribloom の設計・構造・処理フローについては、以下のドキュメントをご参照ください。
 
 - [構造とモジュールの責務](docs/structure.md)
 - [処理の流れとデータ構造](docs/dataflow.md)
 - [設計思想と技術選定](docs/design.md)
-- [更新履歴 / CHANGELOG](docs/changelog.md)
+- [更新履歴](docs/changelog.md)
+
+👉 Web形式で閲覧できる [Scribloom Docs（GitHub Pages版）](https://eyamagishi.github.io/scribloom/) はこちら
 
 ---
 
