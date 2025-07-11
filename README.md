@@ -112,3 +112,4 @@ Scribloom の設計・構造・処理フローの詳細はこちら：
 - Streamlit Cloud でデプロイ＆公開済み
 - `.gitignore` にキャッシュ／秘匿情報の除外設定あり
 - モジュールとテストには docstring を整備済み
+- 🔗 [貢献ガイドはこちら](CONTRIBUTING.md)
