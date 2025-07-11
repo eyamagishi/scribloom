@@ -7,8 +7,7 @@
 
 ## 🔗 公開デモ
 
-👉 [https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app](https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app)
-
+👉 [https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app](https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app)  
 > ブラウザだけで起動し、インストール不要です。
 
 ---
@@ -63,18 +62,30 @@ poetry run pytest --cov=app tests/
 ├── data/          # 投稿データ（JSON）
 ├── tests/         # ユニットテスト
 ├── images/        # スクリーンショット等の補助資料
+├── docs/          # 設計思想や構造など補足ドキュメント
 ├── README.md
 ├── pyproject.toml
 ```
 
 ---
 
+## 📘 詳細ドキュメント（`docs/` ディレクトリ）
+
+Scribloom の設計・構造・処理フローの詳細はこちら：
+
+- [構造とモジュールの責務](docs/structure.md)
+- [処理の流れとデータ構造](docs/dataflow.md)
+- [設計思想と技術選定](docs/design.md)
+- [更新履歴 / CHANGELOG](docs/changelog.md)
+
+---
+
 ## 📌 今後の展望
 
-- 💾 自動保存機能（下書きの保持と警告表示）
-- 🔍 履歴の検索・フィルタ（ジャンル・キーワード別）
-- 🔁 お題の再生成機能
-- 📊 自分の創作傾向の統計表示
+- 💾 自動保存機能（下書き保持と保存警告）
+- 🔍 履歴の検索・フィルタ（ジャンルやキーワード）
+- 🔁 お題の再生成オプション
+- 🧠 GPTによる創作ヒント提案
 - 🌙 ダークモード対応
 - 📣 フィードバックフォームの設置
 
@@ -83,10 +94,10 @@ poetry run pytest --cov=app tests/
 ## 🧭 使用例（こんな人におすすめ）
 
 - **毎日の執筆習慣をつけたい人**  
-  → 書くテーマが決まっているので迷わず始められます。
+  → テーマ付きで迷わず始められます。
 
 - **創作活動のアイデアメモとして使いたい人**  
-  → お題に応じて短く書いて保存、履歴を活用できます。
+  → 短く書いて履歴に残せます。
 
 - **創作仲間と共有したい人**  
   → JSONデータをブログやSNSに展開可能です。
@@ -95,6 +106,7 @@ poetry run pytest --cov=app tests/
 
 ## 🧑‍💻 開発者向けメモ
 
-- 開発には Poetry を使用
-- Streamlit Cloud に対応済み（公開中）
-- `.gitignore` にキャッシュ・秘密情報を除外済み
+- Poetry による依存管理を採用
+- Streamlit Cloud でデプロイ＆公開済み
+- `.gitignore` にキャッシュ／秘匿情報の除外設定あり
+- モジュールとテストには docstring を整備済み
