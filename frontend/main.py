@@ -14,6 +14,7 @@ Scribloom の Streamlit フロントエンド。
     - Pydantic によるデータスキーマ管理
     - JSON ファイルによるローカルストレージ
 """
+
 import streamlit as st
 from datetime import date
 from app.core.prompt import generate_daily_prompt
