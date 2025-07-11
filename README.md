@@ -9,7 +9,7 @@
 
 👉 [https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app](https://scribloom-ezvsuisqzzsqncvzvbsevd.streamlit.app)
 
-> アプリはブラウザだけで起動し、インストール不要です。
+> ブラウザだけで起動し、インストール不要です。
 
 ---
 
@@ -22,23 +22,18 @@
 
 ---
 
-## 🖼️ スクリーンショット（任意）
+## 🖼️ 使用イメージ
 
-> 使い方のイメージを伝えるために、アプリのUIを1〜2枚掲載すると効果的です。
+Scribloom の執筆画面では、Markdownプレビューと文字数カウント付きで快適に創作できます。
 
-```markdown
 ![Scribloom UI](images/screenshot_ui.png)
-```
 
 ---
 
 ## 🛠 セットアップ方法
 
 ```bash
-# Poetry を使って依存をインストール
 poetry install
-
-# アプリを起動
 poetry run streamlit run frontend/main.py
 ```
 
@@ -52,7 +47,7 @@ poetry run streamlit run frontend/main.py
 poetry run pytest --cov=app tests/
 ```
 
-> `pytest-cov` がインストールされていることを確認してください。
+> `pytest-cov` がインストールされていることをご確認ください。
 
 ---
 
@@ -67,6 +62,7 @@ poetry run pytest --cov=app tests/
 ├── frontend/      # Streamlit UI
 ├── data/          # 投稿データ（JSON）
 ├── tests/         # ユニットテスト
+├── images/        # スクリーンショット等の補助資料
 ├── README.md
 ├── pyproject.toml
 ```
@@ -76,15 +72,29 @@ poetry run pytest --cov=app tests/
 ## 📌 今後の展望
 
 - 💾 自動保存機能（下書きの保持と警告表示）
-- 🔍 履歴の検索・フィルタ（キーワード・ジャンル）
+- 🔍 履歴の検索・フィルタ（ジャンル・キーワード別）
 - 🔁 お題の再生成機能
+- 📊 自分の創作傾向の統計表示
 - 🌙 ダークモード対応
 - 📣 フィードバックフォームの設置
+
+---
+
+## 🧭 使用例（こんな人におすすめ）
+
+- **毎日の執筆習慣をつけたい人**  
+  → 書くテーマが決まっているので迷わず始められます。
+
+- **創作活動のアイデアメモとして使いたい人**  
+  → お題に応じて短く書いて保存、履歴を活用できます。
+
+- **創作仲間と共有したい人**  
+  → JSONデータをブログやSNSに展開可能です。
 
 ---
 
 ## 🧑‍💻 開発者向けメモ
 
 - 開発には Poetry を使用
-- Streamlit Cloud に対応済み
-- `.gitignore` にキャッシュ・秘密情報の除外設定あり
+- Streamlit Cloud に対応済み（公開中）
+- `.gitignore` にキャッシュ・秘密情報を除外済み
