@@ -1,28 +1,12 @@
 import pytest
 from pathlib import Path
-from datetime import datetime
-from app.services import storage
-from app.models.schemas import Post
-
-class MockStorage:
-    """
-    投稿の保存・読み込みをモジュール関数で扱うためのラッパークラス。
-    テスト用に DATA_PATH を一時ディレクトリへ切り替え可能。
-    """
-    def __init__(self, temp_dir: Path):
-        self.data_path = temp_dir / "posts.json"
-        storage.DATA_PATH = self.data_path  # モジュール内のグローバルを書き換え
-
-    def save_post(self, post: Post):
-        return storage.save_post(post)
-
-    def load_posts(self) -> dict:
-        return storage.load_posts()
+from app.services.storage import Storage
 
 @pytest.fixture
 def storage_fixture(tmp_path):
     """
-    テスト用ストレージラッパーを提供する fixture。
-    一時ディレクトリに書き込むよう設定済み。
+    テスト用 Storage クラスのインスタンスを返す fixture。
+    一時ディレクトリを使って安全な保存領域を提供する。
     """
-    return MockStorage(tmp_path)
+    data_path = tmp_path / "posts.json"
+    return Storage(data_path=data_path)
