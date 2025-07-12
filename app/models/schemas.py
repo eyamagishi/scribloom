@@ -9,7 +9,7 @@ Pydantic モデルとして定義し、型安全なデータ管理を提供し�
     - datetime.date による日付管理
 """
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import date
 from typing import Dict
 
@@ -39,4 +39,5 @@ class Post(BaseModel):
     date: date
     prompt: Prompt
     content: str
-    word_count: int
+    word_count: int = Field(ge=0, description="0以上の値を要求")
+
