@@ -115,3 +115,45 @@ Scribloom の設計・構造・処理フローについては、以下のドキ�
 - `.gitignore` にキャッシュ／秘匿情報の除外設定あり
 - モジュールとテストには docstring を整備済み
 - 🔗 [貢献ガイドはこちら](CONTRIBUTING.md)
+
+## 🧪 テスト実行方法
+
+```bash
+poetry run pytest -v
+```
+
+カバレッジを確認する場合は以下を使用します：
+
+```bash
+poetry run pytest --cov=app --cov-report=term-missing
+```
+
+> `pytest-cov` がインストールされていることをご確認ください。
+
+---
+
+## 📦 除外ファイル（.gitignore ポリシー）
+
+以下のファイル・ディレクトリは Git 管理対象外です：
+
+- Python キャッシュ・一時ファイル：`__pycache__/`, `*.pyc`, `*.log`, `*.sqlite3`
+- テスト成果物：`.pytest_cache/`, `.coverage`, `htmlcov/`
+- 機密情報：`.env`, `.streamlit/secrets.toml`
+- 投稿データ：`data/posts.json`（ローカル保存用）
+- IDE 設定：`.vscode/`
+
+> 📌 `images/` ディレクトリは除外していません。スクリーンショット等はそのままコミット対象です。
+
+---
+
+## ⚙️ 開発環境構成
+
+| 項目         | 内容                         |
+|--------------|------------------------------|
+| Python       | 3.10 以上                     |
+| パッケージ管理 | Poetry                       |
+| テスト       | pytest / pytest-cov           |
+| 実行方法     | `poetry run streamlit run frontend/main.py` |
+| モジュール構成 | `app/`, `tests/`, `docs/` など |
+
+> 初回セットアップには `poetry install` を使用してください。
