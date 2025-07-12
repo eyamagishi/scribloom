@@ -1,0 +1,32 @@
+name: Run tests  # ワークフローの名前（GitHub上で表示されます）
+
+on:
+  push:
+    branches: [ main ]  # main ブランチへの push 時に実行
+  pull_request:
+    branches: [ main ]  # main ブランチへの PR 時にも実行
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # GitHub が提供する最新の Ubuntu runner を使用
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4  # リポジトリのコードをクローンする
+
+    - name: Set up Python
+      uses: actions/setup-python@v5  # Python 実行環境を準備
+      with:
+        python-version: '3.10'  # 使用する Python のバージョン（Poetry に合わせる）
+
+    - name: Install Poetry
+      run: |
+        pip install poetry  # Poetry を pip でインストール（公式推奨手順）
+
+    - name: Install dependencies
+      run: |
+        poetry install  # pyproject.toml に基づいて依存パッケージをインストール
+
+    - name: Run tests
+      run: |
+        poetry run pytest --cov=app --cov-report=term-missing  # テストとカバレッジを実行
