@@ -71,14 +71,16 @@ poetry run pytest --cov=app tests/
 
 ---
 
-## 📘 詳細ドキュメント（`docs/` ディレクトリ）
+## 📘 詳細ドキュメント
 
-Scribloom の設計・構造・処理フローの詳細はこちら：
+Scribloom の設計・構造・処理フローについては、以下のドキュメントをご参照ください。
 
 - [構造とモジュールの責務](docs/structure.md)
 - [処理の流れとデータ構造](docs/dataflow.md)
 - [設計思想と技術選定](docs/design.md)
-- [更新履歴 / CHANGELOG](docs/changelog.md)
+- [更新履歴](docs/changelog.md)
+
+👉 Web形式で閲覧できる [Scribloom Docs（GitHub Pages版）](https://eyamagishi.github.io/scribloom/) はこちら
 
 ---
 
@@ -113,3 +115,45 @@ Scribloom の設計・構造・処理フローの詳細はこちら：
 - `.gitignore` にキャッシュ／秘匿情報の除外設定あり
 - モジュールとテストには docstring を整備済み
 - 🔗 [貢献ガイドはこちら](CONTRIBUTING.md)
+
+## 🧪 テスト実行方法
+
+```bash
+poetry run pytest -v
+```
+
+カバレッジを確認する場合は以下を使用します：
+
+```bash
+poetry run pytest --cov=app --cov-report=term-missing
+```
+
+> `pytest-cov` がインストールされていることをご確認ください。
+
+---
+
+## 📦 除外ファイル（.gitignore ポリシー）
+
+以下のファイル・ディレクトリは Git 管理対象外です：
+
+- Python キャッシュ・一時ファイル：`__pycache__/`, `*.pyc`, `*.log`, `*.sqlite3`
+- テスト成果物：`.pytest_cache/`, `.coverage`, `htmlcov/`
+- 機密情報：`.env`, `.streamlit/secrets.toml`
+- 投稿データ：`data/posts.json`（ローカル保存用）
+- IDE 設定：`.vscode/`
+
+> 📌 `images/` ディレクトリは除外していません。スクリーンショット等はそのままコミット対象です。
+
+---
+
+## ⚙️ 開発環境構成
+
+| 項目         | 内容                         |
+|--------------|------------------------------|
+| Python       | 3.10 以上                     |
+| パッケージ管理 | Poetry                       |
+| テスト       | pytest / pytest-cov           |
+| 実行方法     | `poetry run streamlit run frontend/main.py` |
+| モジュール構成 | `app/`, `tests/`, `docs/` など |
+
+> 初回セットアップには `poetry install` を使用してください。

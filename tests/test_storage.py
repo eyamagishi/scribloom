@@ -6,63 +6,39 @@ storage モジュールの投稿保存・読み込み機能に関するテスト
 
 使用技術:
     - pytest によるテスト実行
-    - tempfile による一時ファイル生成
-    - monkeypatch による DATA_PATH の差し替え
+    - conftest.py による storage_fixture の提供
 """
 
 import json
-import tempfile
-from pathlib import Path
-from datetime import date
-from app.models.schemas import Prompt, Post
-from app.services import storage
+from app.models.schemas import Post
+from app.services.storage import Storage
 
-def test_save_and_load_post(monkeypatch):
+def test_save_and_load_post(storage_fixture):
     """
-    投稿データを保存し、正しく読み込めることを確認するテスト。
-
-    - 一時ファイルに保存された JSON を読み込み
-    - 投稿内容（テーマ・本文）が正しく保持されているか検証
+    投稿データを保存し、正しく読み込めることを確認する。
     """
-    with tempfile.TemporaryDirectory() as tmpdir:
-        test_path = Path(tmpdir) / "posts.json"
-        monkeypatch.setattr(storage, "DATA_PATH", test_path)
+    post = Post(
+        date="2025-07-12",
+        content="テスト投稿",
+        prompt={"theme": "夢", "genre": "SF", "setting": "宇宙船の中"},
+        word_count=5  # ← これを追加
+    )
+    storage_fixture.save_post(post)
 
-        prompt = Prompt(theme="記憶", genre="SF", setting="宇宙船の中")
-        post = Post(
-            date=date(2025, 7, 10),
-            prompt=prompt,
-            content="彼は記憶を失った状態で目を覚ました。",
-            word_count=20
-        )
+    loaded = storage_fixture.load_posts()
+    assert "2025-07-12" in loaded
+    assert loaded["2025-07-12"]["content"] == "テスト投稿"
 
-        storage.save_post(post)
-        loaded = storage.load_posts()
-
-        assert "2025-07-10" in loaded
-        assert loaded["2025-07-10"]["prompt"]["theme"] == "記憶"
-        assert loaded["2025-07-10"]["content"].startswith("彼は記憶を")
-
-def test_load_posts_with_empty_file(monkeypatch):
+def test_load_posts_with_empty_file(storage_fixture):
     """
-    空の JSON ファイルを読み込んだ場合に空の辞書が返ることを確認するテスト。
+    空のファイルから読み込んだ場合、空の辞書が返ることを確認する。
     """
-    with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
-        tmp_path = Path(tmp.name)
-        tmp.write("")  # 空ファイル
+    storage_fixture.data_path.write_text("")
+    assert storage_fixture.load_posts() == {}
 
-    monkeypatch.setattr(storage, "DATA_PATH", tmp_path)
-    posts = storage.load_posts()
-    assert posts == {}
-
-def test_load_posts_with_invalid_json(monkeypatch):
+def test_load_posts_with_invalid_json(storage_fixture):
     """
-    壊れた JSON ファイルを読み込んだ場合に空の辞書が返ることを確認するテスト。
+    不正な JSON が含まれている場合でも、例外を出さず空の辞書を返すことを確認する。
     """
-    with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
-        tmp_path = Path(tmp.name)
-        tmp.write("{ invalid json }")  # 壊れたJSON
-
-    monkeypatch.setattr(storage, "DATA_PATH", tmp_path)
-    posts = storage.load_posts()
-    assert posts == {}
+    storage_fixture.data_path.write_text("{ invalid json }")
+    assert storage_fixture.load_posts() == {}
